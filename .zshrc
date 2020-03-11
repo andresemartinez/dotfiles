@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/andres/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -94,11 +94,6 @@ alias fd="fdfind"
 alias ll="exa --long -g --git"
 alias l="ll -a"
 
-#JAVA
-export PATH=$PATH:/home/andres/bin
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-export CLASSPATH=".:/usr/local/lib/antlr-4.7-complete.jar:$CLASSPATH"
-
 #docker
 alias dl="docker ps -l -q"
 # Get container process
@@ -118,10 +113,7 @@ alias dex="docker exec -i -t"
 # Stop container
 alias dto="docker stop"
 # Stop all containers
-alias dto="docker ps -q | xargs docker stop"
-
-#redis
-alias redisdm="docker run  -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.rdm:/root/.rdm -e DISPLAY=unix$DISPLAY --device /dev/dri -e SSH_AUTH_SOCK -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK --name redis-desktop-manager benoitg/redis-desktop-manager"
+alias dtos="docker ps -q | xargs docker stop"
 
 # Minecraft server
 alias sshm="ssh root@198.12.73.14"
@@ -129,13 +121,13 @@ alias sshm="ssh root@198.12.73.14"
 ############################################################ END OF PERSONAL CONFIGURATION #################################################
 
 #Android Studio Emulator
-export PATH=/home/andres/Android/Sdk/emulator:$PATH
+export PATH=$HOME/Android/Sdk/emulator:$PATH
 
 #Flutter
-export PATH=/home/andres/lib/flutter/bin:$PATH
+export PATH=$HOME/lib/flutter/bin:$PATH
 
-#AWS
-export PATH=/home/andres/.local/bin:$PATH
+# Export bin folder
+export PATH=$HOME/.local/bin:$PATH
 
 #NVM
 export NVM_DIR="$HOME/.nvm"
@@ -143,6 +135,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/andres/.sdkman"
-[[ -s "/home/andres/.sdkman/bin/sdkman-init.sh" ]] && source "/home/andres/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "/home/andres/.sdkman/bin/sdkman-init.sh"
 

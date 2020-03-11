@@ -1,4 +1,8 @@
 
+" Enable syntax hilight
+syntax enable
+colorscheme desert 
+
 " Necesary for lots of cool vim things
 set nocompatible
 
@@ -17,3 +21,6 @@ set path+=**
 
 " Displays all matching files when we tab complete
 set wildmenu
+
+
+"colorscheme whatever
