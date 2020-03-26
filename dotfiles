@@ -8,17 +8,39 @@ dotfilesDir = os.getcwd()
 ignoredFiles = ['README.md', 'dotfiles']
 ignoredFolders = ['.git']
 
-for subdir, dirs, files in os.walk(dotfilesDir, topdown=True):
-    dirs[:] = [d for d in dirs if d not in ignoredFolders]
-    for file in files:
-        if file not in ignoredFiles:
-            filePath = subdir + os.sep + file
-            linkPath = homeDir + os.sep + os.path.relpath(subdir, start=dotfilesDir) + os.sep + file
-            try:
-                os.symlink(filePath, linkPath)
-            except OSError as e:
-                if e.errno == errno.EEXIST:
-                    os.remove(linkPath)
-                    os.symlink(filePath, linkPath)
-                else:
-                    raise e
+def log(log):
+    print(log)
+
+def dotfiles():
+    return os.walk(dotfilesDir, topdown=True)
+
+def buildLinkPath(subdir, file):
+    return homeDir + os.sep + os.path.relpath(subdir, start=dotfilesDir) + os.sep + file
+
+def buildFilePath(subdir, file):
+    return subdir + os.sep + file
+
+def generateSymLink(subdir, file):
+    filePath = buildFilePath(subdir, file)
+    linkPath = buildLinkPath(subdir, file)
+
+    try:
+        os.symlink(filePath, linkPath)
+        log('Created symlink for file ' + file)
+    except OSError as e:
+        if e.errno == errno.EEXIST:
+            os.remove(linkPath)
+            os.symlink(filePath, linkPath)
+            log('Created symlink for file ' + file)
+        else:
+            raise e
+
+def main():
+    for subdir, dirs, files in dotfiles():
+        dirs[:] = [d for d in dirs if d not in ignoredFolders]
+        for file in files:
+            if file not in ignoredFiles:
+                generateSymLink(subdir, file)
+
+if __name__ == '__main__':
+    main()
