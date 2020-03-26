@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+
+import os
+import errno
+
+homeDir = os.getenv('HOME')
+dotfilesDir = os.getcwd()
+ignoredFiles = ['README.md', 'dotfiles']
+ignoredFolders = ['.git']
+
+for subdir, dirs, files in os.walk(dotfilesDir, topdown=True):
+    dirs[:] = [d for d in dirs if d not in ignoredFolders]
+    for file in files:
+        if file not in ignoredFiles:
+            filePath = subdir + os.sep + file
+            linkPath = homeDir + os.sep + os.path.relpath(subdir, start=dotfilesDir) + os.sep + file
+            try:
+                os.symlink(filePath, linkPath)
+            except OSError as e:
+                if e.errno == errno.EEXIST:
+                    os.remove(linkPath)
+                    os.symlink(filePath, linkPath)
+                else:
+                    raise e
