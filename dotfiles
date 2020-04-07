@@ -20,18 +20,19 @@ def buildLinkPath(subdir, file):
 def buildFilePath(subdir, file):
     return subdir + os.sep + file
 
-def generateSymLink(subdir, file):
-    filePath = buildFilePath(subdir, file)
-    linkPath = buildLinkPath(subdir, file)
+def generateSymLink(filePath, linkPath, forse=False):
 
     try:
         os.symlink(filePath, linkPath)
-        log('Created symlink for file ' + file)
+        log('Created symlink for file ' + filePath)
     except OSError as e:
         if e.errno == errno.EEXIST:
-            os.remove(linkPath)
-            os.symlink(filePath, linkPath)
-            log('Created symlink for file ' + file)
+            if forse:
+                os.remove(linkPath)
+                os.symlink(filePath, linkPath)
+                log('Created symlink for file ' + filePath)
+            else:
+                log('ERROR: Could\'t create symlink for file ' + filePath + ' (already exist)')
         else:
             raise e
 
@@ -40,7 +41,9 @@ def main():
         dirs[:] = [d for d in dirs if d not in ignoredFolders]
         for file in files:
             if file not in ignoredFiles:
-                generateSymLink(subdir, file)
+                filePath = buildFilePath(subdir, file)
+                linkPath = buildLinkPath(subdir, file)
+                generateSymLink(filePath, linkPath)
 
 if __name__ == '__main__':
     main()
