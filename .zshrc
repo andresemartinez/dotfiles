@@ -9,8 +9,6 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="andrescustom"
 
-COMPLETION_WAITING_DOTS="true"
-
 plugins=(git git-prompt tig npm ng gradle docker zsh-syntax-highlighting sudo kubectl)
 
 source $ZSH/oh-my-zsh.sh
