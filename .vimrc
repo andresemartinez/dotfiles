@@ -1,5 +1,5 @@
 
-" Enable syntax hilight
+" Syntax hilight
 syntax enable
 colorscheme desert 
 
@@ -7,7 +7,7 @@ colorscheme desert
 set nocompatible
 
 " Line numbers
-:set number
+set relativenumber
 
 " Tab handling
 set expandtab
@@ -21,6 +21,3 @@ set path+=**
 
 " Displays all matching files when we tab complete
 set wildmenu
-
-
-"colorscheme whatever
