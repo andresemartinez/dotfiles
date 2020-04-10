@@ -116,9 +116,6 @@ export PATH=$HOME/Android/Sdk/emulator:$PATH
 #Flutter
 export PATH=$HOME/lib/flutter/bin:$PATH
 
-# Export bin folder
-export PATH=$HOME/.local/bin:$PATH
-
 #NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
