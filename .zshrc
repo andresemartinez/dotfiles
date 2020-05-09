@@ -13,8 +13,6 @@ plugins=(git git-prompt tig npm ng gradle docker zsh-syntax-highlighting sudo ku
 
 source $ZSH/oh-my-zsh.sh
 
-############################################################## PERSONAL CONFIGURATION ######################################################
-
 # fd
 alias fd="fdfind"
 
@@ -22,7 +20,10 @@ alias fd="fdfind"
 alias ll="exa --long -g --git"
 alias l="ll -a"
 
-#docker
+# clipboard
+alias wcp="wl-copy"
+
+# docker
 alias dl="docker ps -l -q"
 # Get container process
 alias dps="docker ps"
@@ -43,18 +44,22 @@ alias dto="docker stop"
 # Stop all containers
 alias dtos="docker ps -q | xargs docker stop"
 
+# kuberentes
+alias klive="k --context live"
+alias klgp="klive get pods"
+alias kllf="klive logs -f"
+alias kleti="klive exec -ti"
+
 # Minecraft server
 alias sshm="ssh root@198.12.73.14"
 
-############################################################ END OF PERSONAL CONFIGURATION #################################################
-
-#Android Studio Emulator
+# Android Studio Emulator
 export PATH=$HOME/Android/Sdk/emulator:$PATH
 
-#Flutter
+# Flutter
 export PATH=$HOME/lib/flutter/bin:$PATH
 
-#NVM
+# NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

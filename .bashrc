@@ -75,8 +75,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-############################################################## PERSONAL CONFIGURATION ######################################################
-
 # fd
 alias fd="fdfind"
 
@@ -107,8 +105,6 @@ alias dtos="docker ps -q | xargs docker stop"
 
 # Minecraft server
 alias sshm="ssh root@198.12.73.14"
-
-############################################################ END OF PERSONAL CONFIGURATION #################################################
 
 #Android Studio Emulator
 export PATH=$HOME/Android/Sdk/emulator:$PATH
