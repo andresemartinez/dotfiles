@@ -13,6 +13,9 @@ plugins=(git git-prompt tig npm ng gradle docker zsh-syntax-highlighting sudo ku
 
 source $ZSH/oh-my-zsh.sh
 
+# rip zoom
+alias kz='ps -fe | rg zoom | rg -v rg | awk '\''{print $2}'\'' | xargs kill'
+
 # fd
 alias fd="fdfind"
 
@@ -43,12 +46,6 @@ alias dex="docker exec -i -t"
 alias dto="docker stop"
 # Stop all containers
 alias dtos="docker ps -q | xargs docker stop"
-
-# kuberentes
-alias klive="k --context live"
-alias klgp="klive get pods"
-alias kllf="klive logs -f"
-alias kleti="klive exec -ti"
 
 # Minecraft server
 alias sshm="ssh root@198.12.73.14"
