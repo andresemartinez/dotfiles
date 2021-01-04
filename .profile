@@ -7,8 +7,18 @@
 # |_|   |_|  \___/|_| |_|_|\___|
 # 
 
-# Set PATH so it include my personal bin
+# Set PATH so it includes my user's bin
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
+# Rust cargo
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Go
+export PATH="$PATH:/usr/local/go/bin"
+
+# Android Studio Emulator
+export PATH=$HOME/Android/Sdk/emulator:$PATH
+
+# Flutter
+export PATH=$HOME/lib/flutter/bin:$PATH
