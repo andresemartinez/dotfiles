@@ -13,9 +13,6 @@ plugins=(git git-prompt tig npm ng gradle docker zsh-syntax-highlighting sudo ku
 
 source $ZSH/oh-my-zsh.sh
 
-# salud prevent
-alias sp='cd $HOME/dev/salud-prevent'
-
 # rip zoom
 alias kz='ps -fe | rg zoom | rg -v rg | awk '\''{print $2}'\'' | xargs kill'
 
@@ -51,20 +48,11 @@ alias dto="docker stop"
 alias dtos="docker ps -q | xargs docker stop"
 
 # k8s
-alias kt="kubectl -n test"
-alias ktgp="kt get pods"
-alias ktl="kt logs"
-alias ktlf="ktl -f"
-alias ktex="kt exec -it"
-
-# Minecraft server
-alias sshm="ssh root@198.12.73.14"
-
-# Android Studio Emulator
-export PATH=$HOME/Android/Sdk/emulator:$PATH
-
-# Flutter
-export PATH=$HOME/lib/flutter/bin:$PATH
+alias ka="kubectl -n application"
+alias kagp="ka get pods"
+alias kal="ka logs"
+alias kalf="kal -f"
+alias kaex="ka exec -it"
 
 # s3-utils aliases
 alias s3it="/home/andres/dev/salud-prevent/s3-utils/s3-init"
