@@ -13,6 +13,8 @@ plugins=(git git-prompt tig npm ng gradle docker zsh-syntax-highlighting sudo ku
 
 source $ZSH/oh-my-zsh.sh
 
+export EDITOR=vim
+
 # rip zoom
 alias kz='ps -fe | rg zoom | rg -v rg | awk '\''{print $2}'\'' | xargs kill'
 
@@ -71,3 +73,10 @@ export NVM_DIR="$HOME/.nvm"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "/home/andres/.sdkman/bin/sdkman-init.sh"
 
+# bash autocomplete scripts
+# For some reason nvm executes de bashcompinit, so completion scripts must be before that
+source $HOME/bin/qnote_completion
+
+# [ -x "$(command -v tmux)" ] \
+#   && [ -z "${TMUX}" ] \
+#   && (tmux attach || tmux) >/dev/null 2>&1
