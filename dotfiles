@@ -20,7 +20,7 @@ def buildLinkPath(subdir, file):
 def buildFilePath(subdir, file):
     return subdir + os.sep + file
 
-def generateSymLink(filePath, linkPath, forse=False):
+def generateSymLink(filePath, linkPath, forse=True):
 
     try:
         os.symlink(filePath, linkPath)
