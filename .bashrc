@@ -103,9 +103,6 @@ alias dto="docker stop"
 # Stop all containers
 alias dtos="docker ps -q | xargs docker stop"
 
-# Minecraft server
-alias sshm="ssh root@198.12.73.14"
-
 #Android Studio Emulator
 export PATH=$HOME/Android/Sdk/emulator:$PATH
 

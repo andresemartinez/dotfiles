@@ -3,6 +3,8 @@
 # |_  / __| '_ \| '__/ __|
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
+#
+# v0.0.1
 # 
 
 export ZSH=$HOME/.oh-my-zsh
@@ -15,18 +17,15 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR=vim
 
-# rip zoom
-alias kz='ps -fe | rg zoom | rg -v rg | awk '\''{print $2}'\'' | xargs kill'
-
-# fd
-alias fd="fdfind"
-
 # exa
 alias ll="exa --long -g --git"
 alias l="ll -a"
+alias tree="exa --tree"
 
 # clipboard
 alias wcp="wl-copy"
+
+alias qrc="qrencode -t ANSI -m 2 -o -"
 
 # docker
 alias dl="docker ps -l -q"
@@ -64,19 +63,42 @@ alias s3rf="/home/andres/dev/salud-prevent/s3-utils/scripts/s3-remove-file"
 alias s3rb="/home/andres/dev/salud-prevent/s3-utils/scripts/s3-remove-bucket"
 alias s3ls="/home/andres/dev/salud-prevent/s3-utils/scripts/s3-ls"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# qnote config
+export QNOTE_READER="glow"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# asdf
+export ASDF_DIR="$HOME/.asdf"
+[ -s "$ASDF_DIR/asdf.sh" ] && { \. "$ASDF_DIR/asdf.sh"; \. "$ASDF_DIR/completions/asdf.bash"}
+
+# nvm 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "/home/andres/.sdkman/bin/sdkman-init.sh"
 
 # bash autocomplete scripts
-# For some reason nvm executes de bashcompinit, so completion scripts must be before that
+# For some reason nvm executes bashcompinit, so completion scripts must be after that
 source $HOME/bin/qnote_completion
-
-# [ -x "$(command -v tmux)" ] \
-#   && [ -z "${TMUX}" ] \
-#   && (tmux attach || tmux) >/dev/null 2>&1
