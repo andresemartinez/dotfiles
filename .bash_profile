@@ -7,4 +7,5 @@
 #                           |_____|_|
 # 
 
-source $HOME/.profile
+source "$HOME/.profile"
+source "$HOME/.bashrc"

@@ -4,17 +4,18 @@
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
 #
-# v0.0.1
 # 
 
+# oh-my-zsh config
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="andrescustom"
 
-plugins=(git git-prompt tig npm ng gradle docker zsh-syntax-highlighting sudo kubectl)
+plugins=(git git-prompt tig npm gradle docker zsh-syntax-highlighting sudo kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
+# default editor
 export EDITOR=vim
 
 # exa
@@ -22,10 +23,8 @@ alias ll="exa --long -g --git"
 alias l="ll -a"
 alias tree="exa --tree"
 
-# clipboard
+# wayland clipboard
 alias wcp="wl-copy"
-
-alias qrc="qrencode -t ANSI -m 2 -o -"
 
 # docker
 alias dl="docker ps -l -q"
@@ -37,23 +36,22 @@ alias dpa="docker ps -a"
 alias di="docker images"
 # Get container IP
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-# Run deamonized container, e.g., $dkd base /bin/echo hello
-alias dkd="docker run -d -P"
-# Run interactive container, e.g., $dki base /bin/bash
-alias dki="docker run -i -t -P"
 # Execute interactive container, e.g., $dex base /bin/bash
-alias dex="docker exec -i -t"
+alias dex="docker exec -it"
 # Stop container
 alias dto="docker stop"
 # Stop all containers
 alias dtos="docker ps -q | xargs docker stop"
 
 # k8s
-alias ka="kubectl -n application"
+alias ka="kubectl -n cl-jumboweb"
 alias kagp="ka get pods"
 alias kal="ka logs"
 alias kalf="kal -f"
 alias kaex="ka exec -it"
+
+# tmux
+alias t="tmux new-session -A -s main"
 
 # s3-utils aliases
 alias s3it="/home/andres/dev/salud-prevent/s3-utils/s3-init"
@@ -66,9 +64,15 @@ alias s3ls="/home/andres/dev/salud-prevent/s3-utils/scripts/s3-ls"
 # qnote config
 export QNOTE_READER="glow"
 
+# bat
+export BAT_THEME="Catppuccin-macchiato"
+
 # asdf
 export ASDF_DIR="$HOME/.asdf"
 [ -s "$ASDF_DIR/asdf.sh" ] && { \. "$ASDF_DIR/asdf.sh"; \. "$ASDF_DIR/completions/asdf.bash"}
+
+# fzf
+source "$HOME/.fzf.zsh"
 
 # nvm 
 export NVM_DIR="$HOME/.nvm"
@@ -96,6 +100,7 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+# sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "/home/andres/.sdkman/bin/sdkman-init.sh"
 
