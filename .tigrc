@@ -1,2 +1,7 @@
 
-bind status     C       !git commit -S
+bind status C !git commit -S
+
+bind generic 9 @sh -c "echo -n %(commit) | wl-copy"
+
+color cursor black green normal
+color title-focus black blue bold
