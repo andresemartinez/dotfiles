@@ -3,8 +3,6 @@
 # |_  / __| '_ \| '__/ __|
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
-#
-# 
 
 # oh-my-zsh config
 export ZSH=$HOME/.oh-my-zsh
@@ -54,12 +52,12 @@ alias kaex="ka exec -it"
 alias t="tmux new-session -A -s main"
 
 # s3-utils aliases
-alias s3it="/home/andres/dev/salud-prevent/s3-utils/s3-init"
-alias s3cb="/home/andres/dev/salud-prevent/s3-utils/scripts/s3-create-bucket"
-alias s3uf="/home/andres/dev/salud-prevent/s3-utils/scripts/s3-upload-file"
-alias s3rf="/home/andres/dev/salud-prevent/s3-utils/scripts/s3-remove-file"
-alias s3rb="/home/andres/dev/salud-prevent/s3-utils/scripts/s3-remove-bucket"
-alias s3ls="/home/andres/dev/salud-prevent/s3-utils/scripts/s3-ls"
+alias s3it="/home/andres/dev/s3-utils/s3-init"
+alias s3cb="/home/andres/dev/s3-utils/scripts/s3-create-bucket"
+alias s3uf="/home/andres/dev/s3-utils/scripts/s3-upload-file"
+alias s3rf="/home/andres/dev/s3-utils/scripts/s3-remove-file"
+alias s3rb="/home/andres/dev/s3-utils/scripts/s3-remove-bucket"
+alias s3ls="/home/andres/dev/s3-utils/scripts/s3-ls"
 
 # qnote config
 export QNOTE_READER="glow"
@@ -74,7 +72,7 @@ export ASDF_DIR="$HOME/.asdf"
 # fzf
 source "$HOME/.fzf.zsh"
 
-# nvm 
+# nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

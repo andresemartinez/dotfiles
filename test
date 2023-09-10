@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+#      _       _    __ _ _
+#   __| | ___ | |_ / _(_) | ___  ___
+#  / _` |/ _ \| __| |_| | |/ _ \/ __|
+# | (_| | (_) | |_|  _| | |  __/\__ \
+#  \__,_|\___/ \__|_| |_|_|\___||___/
+#
+# This script link all the dotfiles in this directory
+# to your home directory. If the file already exists it
+# is renamed to <original_name>.bkp
+
+SHORT=f,b::,i,h
+LONG=force,backup::,interactive,help,dryrun
+OPTS=$(getopt -n dotfiles --options $SHORT --longoptions $LONG -- "$@")
+
+eval set -- "$OPTS"
+
+LN_ARGS=""
+DRY_RUN=false
+
+while :; do
+	case "$1" in
+
+	-f | --force)
+		LN_ARGS="$LN_ARGS -f"
+		shift 1
+		;;
+
+	-b | --backup)
+		LN_ARGS="$LN_ARGS --backup"
+		LN_ARGS="$LN_ARGS --suffix \"${2:-.bkp}\""
+		shift 2
+		;;
+
+	-i | --interactive)
+		LN_ARGS="$LN_ARGS -i"
+		shift 1
+		;;
+
+	-h | --help)
+		help
+		exit 0
+		;;
+
+	--dryrun)
+		DRY_RUN=true
+		shift 1
+		;;
+
+	--)
+		shift
+		break
+		;;
+
+	*)
+		echo "Unexpected option: $1"
+		help
+		;;
+
+	esac
+done
+
+DOTFILES_SCRIPT="$(readlink -f "$0")"
+DOTFILES_DIR="$(dirname "$DOTFILES_SCRIPT")"
+
+DOTFILES="$(find "$DOTFILES_DIR" -type f | grep -v "\(.git\|README\|dotfiles$\|test\)")"
+DOTFILES_DEPTH="$(($(echo -n "$DOTFILES_SCRIPT" | grep -o / | wc -l) + 1))"
+
+echo "$LN_ARGS"
+
+while IFS= read -r TARGET; do
+	LINK="$HOME/$(cut -d "/" -f "${DOTFILES_DEPTH}-" <<<"$TARGET")"
+
+	echo "$LINK -> $TARGET"
+	if ! $DRY_RUN; then
+		#		dirname "$LINK" | xargs mkdir -p
+		#		ln -s --backup --suffix ".bkp" "$TARGET" "$LINK"
+		echo "not dry run"
+	fi
+
+done <<<"$DOTFILES"
