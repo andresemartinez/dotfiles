@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+function git_projects() {
+	fd -gH \
+		--type d \
+		--color never \
+		--prune \
+		".git" "$HOME/dev" | sed "s/\/\.git\/\?$//"
+}
+
+if [[ $# -eq 1 ]]; then
+	selected=$1
+else
+	#    selected=$(find ~/dev -name ".git" -type d | sed -e "s/\/[^\/]*$//" | fzf)
+	#    selected=$(fd -gu -t d -c never --changed-within 1y ".git" ~/dev | sed "s/\/\.git\/\?$//" | fzf --scheme path)
+	selected="$(git_projects | fzf --scheme path)"
+fi
+
+if [[ -z "$selected" ]]; then
+	exit 0
+fi
+
+selected_name="$(basename "$selected" | tr . _)"
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+	tmux new-session -s $selected_name -c "$selected"
+	exit 0
+fi
+
+if ! tmux has-session -t=$selected_name 2>/dev/null; then
+	tmux new-session -ds $selected_name -c "$selected"
+fi
+
+tmux switch-client -t $selected_name

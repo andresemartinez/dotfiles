@@ -1,11 +1,9 @@
 # Dotfiles
 
-My personal configuration files for unix based systems.
+My personal configuration files for GNU/Linux systems.
 
-## Configuration
+## Description
 
-To replace them easily run the `dotfiles` script. It will replace the files on your home directory with symlinks to the ones in the folder.
-
-## Requirements
-
-The `dotfiles` script is made in Python 3.
+In this repo I keep track and backup my dotfiles. When I'm setting up a new  
+environment I usually clone this repo and use the `dotfiles` script to create  
+links to the files in my home directory.
