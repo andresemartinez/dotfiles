@@ -104,14 +104,5 @@ Two things that make this more than a tidy-up, so budget for them:
   so script shells need the default node's `bin` on PATH by some other route
   (a `$NVM_DIR/current` symlink, or a shim).
 
-Dead code in `zsh/.zshrc` worth clearing out in the same pass:
-
-- The asdf block guards on `~/.asdf/asdf.sh`, which no longer exists — asdf 0.16+
-  is a Go binary. The block never runs; asdf works via homebrew.
-- The sdkman block guards on `$HOME/.sdkman/...` but then sources a hardcoded
-  `/home/andres/.sdkman/...` Linux path. Never runs, and would break if it did.
-- The `s3-utils` aliases point at `/home/andres/dev/...` — Linux paths, dead on
-  macOS.
-- `eval "$(rbenv init ...)"` is unguarded, so it errors on any machine without
-  rbenv. Matters now that packages are installed per-machine.
-- `EDITOR=vim`, while nvim is the actual editor.
+The dead asdf, sdkman and s3-utils blocks have since been removed and `rbenv
+init` is now guarded, so `zsh/.zshrc` holds only things that actually run.

@@ -61,14 +61,6 @@ alias tgraa="terragrunt run --all --non-interactive --queue-include-external --p
 # tmux
 alias t="tmux new-session -A -s main"
 
-# s3-utils aliases
-alias s3it="/home/andres/dev/s3-utils/s3-init"
-alias s3cb="/home/andres/dev/s3-utils/scripts/s3-create-bucket"
-alias s3uf="/home/andres/dev/s3-utils/scripts/s3-upload-file"
-alias s3rf="/home/andres/dev/s3-utils/scripts/s3-remove-file"
-alias s3rb="/home/andres/dev/s3-utils/scripts/s3-remove-bucket"
-alias s3ls="/home/andres/dev/s3-utils/scripts/s3-ls"
-
 # homebrew
 export HOMEBREW_NO_AUTO_UPDATE=1
 
@@ -78,12 +70,8 @@ export QNOTE_READER="glow"
 # bat
 export BAT_THEME="Catppuccin-macchiato"
 
-# asdf
-export ASDF_DIR="$HOME/.asdf"
-[ -s "$ASDF_DIR/asdf.sh" ] && { \. "$ASDF_DIR/asdf.sh"; \. "$ASDF_DIR/completions/asdf.bash"}
-
 # rbenv
-eval "$(rbenv init - --no-rehash zsh)"
+command -v rbenv >/dev/null && eval "$(rbenv init - --no-rehash zsh)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -110,10 +98,6 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
-
-# sdkman
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "/home/andres/.sdkman/bin/sdkman-init.sh"
 
 # bash autocomplete scripts
 # For some reason nvm executes bashcompinit, so completion scripts must be after that
