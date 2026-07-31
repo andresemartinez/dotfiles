@@ -1,0 +1,9 @@
+[user]
+	email = andres93.lml@gmail.com
+	name = Andres Martinez
+[pull]
+	rebase = false
+
+# Work identity, applied automatically to every repo under ~/dev/centralo/.
+[includeIf "gitdir:~/dev/centralo/"]
+	path = ~/.config/git/config.work
