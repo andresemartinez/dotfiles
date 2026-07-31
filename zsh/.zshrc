@@ -17,12 +17,9 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR=vim
 
 # exa
-alias ll="exa --long -g --git"
+alias ll="eza --long -g --git"
 alias l="ll -a"
-alias tree="exa --tree"
-
-# wayland clipboard
-alias wcp="wl-copy"
+alias tree="eza --tree"
 
 # docker
 alias dl="docker ps -l -q"
@@ -42,11 +39,24 @@ alias dto="docker stop"
 alias dtos="docker ps -q | xargs docker stop"
 
 # k8s
-alias ka="kubectl -n cl-jumboweb"
-alias kagp="ka get pods"
-alias kal="ka logs"
-alias kalf="kal -f"
-alias kaex="ka exec -it"
+alias kq="kubectl -n qa"
+alias kqgp="kq get pods"
+alias kqlf="kq logs -f"
+alias kqex="kq exec -it"
+
+alias ks="kubectl -n staging"
+alias ksgp="ks get pods"
+alias kslf="ks logs -f"
+alias ksex="ks exec -it"
+
+alias kp="kubectl -n production"
+alias kpgp="kp get pods"
+alias kplf="kp logs -f"
+alias kpex="kp exec -it"
+
+# terraform / opentofu
+alias tgrap="terragrunt run --all --non-interactive --queue-include-external --provider-cache -- plan"
+alias tgraa="terragrunt run --all --non-interactive --queue-include-external --provider-cache -- apply"
 
 # tmux
 alias t="tmux new-session -A -s main"
@@ -59,6 +69,9 @@ alias s3rf="/home/andres/dev/s3-utils/scripts/s3-remove-file"
 alias s3rb="/home/andres/dev/s3-utils/scripts/s3-remove-bucket"
 alias s3ls="/home/andres/dev/s3-utils/scripts/s3-ls"
 
+# homebrew
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # qnote config
 export QNOTE_READER="glow"
 
@@ -69,8 +82,8 @@ export BAT_THEME="Catppuccin-macchiato"
 export ASDF_DIR="$HOME/.asdf"
 [ -s "$ASDF_DIR/asdf.sh" ] && { \. "$ASDF_DIR/asdf.sh"; \. "$ASDF_DIR/completions/asdf.bash"}
 
-# fzf
-source "$HOME/.fzf.zsh"
+# rbenv
+eval "$(rbenv init - --no-rehash zsh)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -104,4 +117,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # bash autocomplete scripts
 # For some reason nvm executes bashcompinit, so completion scripts must be after that
-source $HOME/bin/qnote_completion
+# source $HOME/bin/qnote_completion

@@ -17,12 +17,11 @@ source "$HOME/.cargo/env"
 # Go
 export PATH="$PATH:/usr/local/go/bin"
 
+# Mysql Client
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
 # Android Studio Emulator
-export PATH=$HOME/Android/Sdk/emulator:$PATH
+export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 
-# Flutter
-export PATH=$HOME/lib/flutter/bin:$PATH
-
-# Toolbox App
-export PATH="$PATH:/home/andres/.local/share/JetBrains/Toolbox/scripts"
-. "$HOME/.cargo/env"
+# Claude Code
+export PATH="$HOME/.local/bin:$PATH"

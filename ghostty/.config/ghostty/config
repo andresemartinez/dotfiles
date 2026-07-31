@@ -1,0 +1,20 @@
+theme = "catppuccin-macchiato.conf"
+
+font-family = "FiraCode Nerd Font Mono"
+font-size = 14
+
+window-decoration = false
+maximize = true
+
+window-padding-x = 10
+window-padding-y = 10
+background-opacity = 0.9
+window-save-state = always
+
+cursor-style = "bar"
+cursor-style-blink = false
+
+confirm-close-surface = false
+auto-update = check
+
+shell-integration-features = ssh-terminfo
